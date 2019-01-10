@@ -18,15 +18,17 @@ try:
         page = raw_input()
         pagestr = 'http://www.' + page
         print pagestr
-
+#page info 
         res = requests.get(pagestr)
         res.raise_for_status()
         print type(res)
         print res.status_code == requests.codes.ok
         print len(res.text)
-        print (res.text[:500])
-
+        print (res.text[:500]) # returns the html
+# open the requested page
         webbrowser.open(pagestr)
+
+#TODO read the actual page content
 except Exception as exc:
     print 'program ended %s' % (exc)
     
