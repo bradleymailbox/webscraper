@@ -1,34 +1,22 @@
 import webbrowser
 import sys
-import pyperclip 
-from webscraper import pyperclip
-import requests
+import databaseop as dbop
+import genop as gen
 
-
-#if len(sys.argv) > 1:
-#    address = ' '.join(sys.argv[1:])
-#else:
-#    address = pyperclip.paste()
-#webbrowser.open('http://www.google.com/maps/place/' + address)
 try:
+    mydb = dbop.connect()
+    sql = dbop.buildsql()
+    dbop.printdata(mydb, sql)
     page = ''
     while page <> '999':
         if page == 999: break
-        print "Enter a page to read"
+        print "Enter a page to read [999 to exit program]:"
         page = raw_input()
-        pagestr = 'http://www.' + page
+        pagestr = 'http://196.10.10.254/' + page
         print pagestr
-#page info 
-        res = requests.get(pagestr)
-        res.raise_for_status()
-        print type(res)
-        print res.status_code == requests.codes.ok
-        print len(res.text)
-        print (res.text[:500]) # returns the html
-# open the requested page
+        gen.printPageInfo(pagestr)
+        # open the requested page
         webbrowser.open(pagestr)
-
-#TODO read the actual page content
 except Exception as exc:
     print 'program ended %s' % (exc)
     
