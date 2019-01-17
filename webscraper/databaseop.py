@@ -3,10 +3,10 @@ import mysql.connector
 #connect to database
 def connect():
     db = mysql.connector.connect(
-        host="196.10.10.254",
-        user="sysuser",
-        password="sysuser123",
-        database="systems"
+        host="",
+        user="",
+        password="",
+        database=""
     )
     print "Connected to database..."
     return db
